@@ -2,6 +2,8 @@ import React from "react";
 import { map } from "lodash";
 
 import Header from "./Header";
+import Title from "./Title";
+import Loader from "./Loader";
 import Job from "./Job";
 import useFetch from "./hook";
 
@@ -12,22 +14,9 @@ const App = () => {
     <>
       <Header />
       <div className="sm:container sm:mx-auto p-5">
-        <div className="max-w-3xl my-16">
-          <h1 className="text-2xl font-medium mb-2">
-            Germany IT Jobs from GitHub
-          </h1>
-          <h2 className="font-medium text-sm text-indigo-400 mb-4 uppercase tracking-wide">
-            A Curated List
-          </h2>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum illo
-            cupiditate molestias atque consequuntur ea quo cumque, odit velit
-            sint similique? Asperiores ratione aperiam tempora, alias corrupti
-            deleniti quaerat molestiae.
-          </p>
-        </div>
+        <Title />
         {error && <p>ERROR ...</p>}
-        {isLoading && <p>IS LOADING...</p>}
+        {isLoading && <Loader />}
         {jobs?.length > 0 && (
           <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
             {map(jobs, (job, i) => (
