@@ -27,6 +27,8 @@ const useFetch = () => {
         allJobs.push(...JSON.parse(contents));
         resultCount = JSON.parse(contents).length;
         page++;
+
+        
       } catch (error) {
         setError(error);
         console.log(error);

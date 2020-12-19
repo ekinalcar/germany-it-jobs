@@ -19,12 +19,10 @@ const Job = ({ job }) => (
         <div className="tracking-wide text-sm text-indigo-500 font-semibold">
           {job.title}
         </div>
-
         <p className="mt-1 text-sm leading-tight font-medium text-black hover:underline">
-          {" "}
           {job.company}
         </p>
-
+        <p className="mt-2 text-sm text-gray-500">{job.location}</p>
         <p className="mt-2 text-sm text-gray-500">{job.created_at}</p>
       </div>
     </div>
