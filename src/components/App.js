@@ -10,7 +10,7 @@ import ScrollTop from "./ScrollTop";
 
 const App = () => {
   const { jobs, isLoading, error } = useFetch();
-
+  console.log(isLoading);
   return (
     <>
       <Header />

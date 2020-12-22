@@ -3,38 +3,32 @@ import { useState, useEffect } from "react";
 const useFetch = () => {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
 
-  const fetchJobs = async () => {
-    for (let i = 0; i <= 5; i++) {
-      fetch(
-        `https://api.allorigins.win/get?url=${encodeURIComponent(
-          `https://jobs.github.com/positions.json?page=${i}&location=Germany`
-        )}`
-      )
-        .then((response) => {
-          if (response.ok) return response.json();
-          throw new Error("Network response was not ok.");
-        })
-        .then((data) => {
-          setIsLoading(true);
-          let allJobs = [];
-          if (JSON.parse(data.contents).length > 0) {
-            allJobs.push(...JSON.parse(data.contents));
-            setJobs(allJobs);
-          }
-          setIsLoading(false);
-        })
-        .catch((error) => {
-          setError(error);
-        });
+  const fetchData = async () => {
+    setIsLoading(true);
+    let allJobs = [];
+    for (let i = 0; i <= 2; i++) {
+      try {
+        const res = await fetch(
+          `https://api.allorigins.win/get?url=${encodeURIComponent(
+            `https://jobs.github.com/positions.json?page=${i}&location=Germany`
+          )}`
+        );
+        const json = await res.json();
+        allJobs.push(...JSON.parse(json.contents));
+        setJobs(allJobs);
+      } catch (error) {
+        setError(error);
+      }
     }
+    setIsLoading(false);
   };
-  useEffect(() => {
-    fetchJobs();
-  }, []);
 
-  return { jobs, isLoading, error };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  return { jobs, error, isLoading };
 };
 
 export default useFetch;
