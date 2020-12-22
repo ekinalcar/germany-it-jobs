@@ -9,22 +9,23 @@ import useFetch from "../hooks/useFetch";
 import ScrollTop from "./ScrollTop";
 
 const App = () => {
-  const { jobs, isLoading, error } = useFetch();
-  console.log(isLoading);
+  const { jobs, error } = useFetch();
   return (
     <>
       <Header />
-      <div className="sm:container sm:mx-auto px-6">
+      <div className="sm:container sm:mx-auto px-6 pb-20">
         <Title />
         {error && <p>ERROR ...</p>}
-        {isLoading && <Loader />}
-        {jobs?.length > 0 && (
+        {jobs?.length === 0 ? (
+          <Loader />
+        ) : (
           <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
             {map(jobs, (job, i) => (
               <Job job={job} key={i} />
             ))}
           </div>
         )}
+
         <ScrollTop />
       </div>
     </>

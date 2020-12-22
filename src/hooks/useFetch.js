@@ -2,11 +2,9 @@ import { useState, useEffect } from "react";
 
 const useFetch = () => {
   const [jobs, setJobs] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchData = async () => {
-    setIsLoading(true);
     let allJobs = [];
     for (let i = 0; i <= 2; i++) {
       try {
@@ -22,13 +20,12 @@ const useFetch = () => {
         setError(error);
       }
     }
-    setIsLoading(false);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-  return { jobs, error, isLoading };
+  return { jobs, error };
 };
 
 export default useFetch;
