@@ -5,7 +5,7 @@ const Job = ({ job }) => (
     href={job.url}
     target="_blank"
     rel="noreferrer"
-    className="block transition duration-500 ease-in-out transform hover:scale-105 cursor-pointer bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl bg-gray-50 p-2"
+    className="outline-none block transition duration-500 ease-in-out transform hover:scale-105 cursor-pointer bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl bg-gray-50 p-2"
   >
     <div className="md:flex">
       <div className="md:flex-shrink-0">

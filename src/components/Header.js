@@ -1,4 +1,6 @@
 import React from "react";
+import { map } from "lodash";
+import { links } from "../data/links";
 
 const Header = () => (
   <header className="p-6 flex items-center py-2 bg-indigo-500 bg-opacity-50">
@@ -12,42 +14,23 @@ const Header = () => (
     </a>
 
     <div className="flex flex-1 items-center justify-end">
-      <a
-        href="https://github.com/ekinalcar"
-        target="_blank"
-        rel="noreferrer"
-        className="outline-none"
-      >
-        <img
-          className="rounded-full w-8 h-8 border-2 border-transparent hover:border-indigo-400"
-          src="https://cdn.jsdelivr.net/npm/simple-icons@v4/icons/github.svg"
-          alt="GitHub"
-        />
-      </a>
-      <a
-        href="https://github.com/ekinalcar"
-        target="_blank"
-        rel="noreferrer"
-        className="ml-4 outline-none"
-      >
-        <img
-          className="rounded-full w-8 h-8 border-2 border-transparent hover:border-indigo-400"
-          src="https://cdn.jsdelivr.net/npm/simple-icons@v4/icons/github.svg"
-          alt="GitHub"
-        />
-      </a>
-      <a
-        href="https://github.com/ekinalcar"
-        target="_blank"
-        rel="noreferrer"
-        className="ml-4 outline-none"
-      >
-        <img
-          className="rounded-full w-8 h-8 border-2 border-transparent hover:border-indigo-400"
-          src="https://cdn.jsdelivr.net/npm/simple-icons@v4/icons/github.svg"
-          alt="GitHub"
-        />
-      </a>
+      {map(links, ({ id, name, src, href }) => (
+        <a
+          key={id}
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          className="outline-none mx-1"
+        >
+          <img
+            className={`rounded-full w-8 h-8 border-2 border-transparent hover:border-indigo-400 ${
+              name === "Twitter" && "bg-black"
+            }`}
+            src={src}
+            alt={name}
+          />
+        </a>
+      ))}
     </div>
   </header>
 );
