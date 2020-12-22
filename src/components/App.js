@@ -5,7 +5,7 @@ import Header from "./Header";
 import Title from "./Title";
 import Loader from "./Loader";
 import Job from "./Job";
-import useFetch from "./hook";
+import useFetch from "../hooks/useFetch";
 import ScrollTop from "./ScrollTop";
 
 const App = () => {
