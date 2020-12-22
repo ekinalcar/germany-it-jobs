@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 const useFetch = () => {
   const [jobs, setJobs] = useState([]);
@@ -7,36 +6,30 @@ const useFetch = () => {
   const [error, setError] = useState("");
 
   const fetchJobs = async () => {
-    let resultCount = 1;
-    let page = 0;
-    const allJobs = [];
-
-    while (resultCount > 0) {
-      setIsLoading(true);
-      try {
-        const response = await axios.get(
-          `https://api.allorigins.win/get?url=${encodeURIComponent(
-            `https://jobs.github.com/positions.json?page=${page}&location=Germany`
-          )}`
-        );
-
-        const {
-          data: { contents },
-        } = response;
-
-        allJobs.push(...JSON.parse(contents));
-        resultCount = JSON.parse(contents).length;
-        page++;
-      } catch (error) {
-        setError(error);
-        console.log(error);
-      }
+    for (let i = 0; i <= 5; i++) {
+      fetch(
+        `https://api.allorigins.win/get?url=${encodeURIComponent(
+          `https://jobs.github.com/positions.json?page=${i}&location=Germany`
+        )}`
+      )
+        .then((response) => {
+          if (response.ok) return response.json();
+          throw new Error("Network response was not ok.");
+        })
+        .then((data) => {
+          setIsLoading(true);
+          let allJobs = [];
+          if (JSON.parse(data.contents).length > 0) {
+            allJobs.push(...JSON.parse(data.contents));
+            setJobs(allJobs);
+          }
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          setError(error);
+        });
     }
-
-    setJobs(allJobs);
-    setIsLoading(false);
   };
-
   useEffect(() => {
     fetchJobs();
   }, []);
