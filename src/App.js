@@ -6,6 +6,7 @@ import Title from "./Title";
 import Loader from "./Loader";
 import Job from "./Job";
 import useFetch from "./hook";
+import ScrollTop from "./ScrollTop";
 
 const App = () => {
   const { jobs, isLoading, error } = useFetch();
@@ -13,7 +14,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <div className="sm:container sm:mx-auto p-5">
+      <div className="sm:container sm:mx-auto px-6">
         <Title />
         {error && <p>ERROR ...</p>}
         {isLoading && <Loader />}
@@ -24,6 +25,7 @@ const App = () => {
             ))}
           </div>
         )}
+        <ScrollTop />
       </div>
     </>
   );

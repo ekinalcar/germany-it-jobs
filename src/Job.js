@@ -10,9 +10,9 @@ const Job = ({ job }) => (
     <div className="md:flex">
       <div className="md:flex-shrink-0">
         <img
-          className="h-20 w-full object-contain md:w-20"
+          className="md:h-20 md:w-20 object-contain hidden md:block"
           src={job.company_logo}
-          alt="Man looking at item at a store"
+          alt={job.company}
         />
       </div>
       <div className="px-5">
