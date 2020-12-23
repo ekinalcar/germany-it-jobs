@@ -15,7 +15,7 @@ const App = () => {
       <Header />
       <div className="sm:container sm:mx-auto px-6 pb-20">
         <Title />
-        {error && <p>ERROR ...</p>}
+        {error.length > 0 && <p>ERROR ...</p>}
         {jobs?.length === 0 ? (
           <Loader />
         ) : (

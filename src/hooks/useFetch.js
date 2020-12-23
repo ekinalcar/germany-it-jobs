@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const useFetch = () => {
   const [jobs, setJobs] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   const fetchData = async () => {
     let allJobs = [];
