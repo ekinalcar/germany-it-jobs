@@ -1,5 +1,6 @@
 import React from "react";
 import { map } from "lodash";
+import LazyLoad from "react-lazyload";
 
 import Header from "./Header";
 import Title from "./Title";
@@ -21,7 +22,9 @@ const App = () => {
         ) : (
           <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10">
             {map(jobs, (job, i) => (
-              <Job job={job} key={i} />
+              <LazyLoad once={job.once} key={i} height={150} offset={[-150, 0]}>
+                <Job job={job} />
+              </LazyLoad>
             ))}
           </div>
         )}
