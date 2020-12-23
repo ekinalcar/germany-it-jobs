@@ -5,21 +5,17 @@ const useFetch = () => {
   const [error, setError] = useState("");
 
   const fetchData = async () => {
-    let resultCount = 1;
-    let page = 0;
     let allJobs = [];
 
-    while (resultCount > 0) {
+    for (let i = 0; i <= 3; i++) {
       try {
         const res = await fetch(
           `https://api.allorigins.win/get?url=${encodeURIComponent(
-            `https://jobs.github.com/positions.json?page=${page}&location=Germany`
+            `https://jobs.github.com/positions.json?page=${i}&location=Germany`
           )}`
         );
         const json = await res.json();
         allJobs.push(...JSON.parse(json.contents));
-        resultCount = JSON.parse(json.contents).length;
-        page++;
       } catch (error) {
         setError(error);
       }
